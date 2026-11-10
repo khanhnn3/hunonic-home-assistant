@@ -12,8 +12,8 @@ https://ko-fi.com/khanhnn3
 </span></b>
 
 <img src="https://ko-fi.com/khanhnn3" width="280">
-
-<scr="![QRCode ủng hộ — app Ngân hàng / MoMo / VietQR / napas247](https://lh3.googleusercontent.com/d/1-A89XKR6R5Od80WGOXqSLPU7pPiQ-Bdq)" width="280">
+QRCode ủng hộ — app Ngân hàng / MoMo / VietQR / napas247
+<scr=https://lh3.googleusercontent.com/d/1-A89XKR6R5Od80WGOXqSLPU7pPiQ-Bdq" width="280">
 
 </div>
 
