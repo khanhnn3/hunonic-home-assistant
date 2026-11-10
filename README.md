@@ -4,8 +4,12 @@
 
 ### ☕ Ủng hộ tác giả
 
-<b><span style="color:#16a34a"> Thanks a bunch for fueling my creativity! I really appreciate your kindness and support. Have an amazing day!
-🇻🇳 Chào các bác ạ, thật ra cái này em làm vì cộng đồng là chính, nhưng cũng tốn nhiều token và thời gian, Thật sự trân trọng sự đồng hành và ủng hộ của bạn. Nhờ có bạn mà mình có thêm kinh phí và tinh thần để duy trì đam mê này mỗi ngày. 🇻🇳</span></b>
+<b><span style="color:#16a34a"> 
+Thanks a bunch for fueling my creativity! I really appreciate your kindness and support. Have an amazing day!
+
+🇻🇳 Chào các bác ạ, thật ra cái này em làm vì cộng đồng là chính, nhưng cũng tốn nhiều token và thời gian, Thật sự trân trọng sự đồng hành và ủng hộ của bạn. Nhờ có bạn mà mình có thêm kinh phí và tinh thần để duy trì đam mê này mỗi ngày. 🇻🇳
+https://ko-fi.com/khanhnn3
+</span></b>
 
 <img src="https://ko-fi.com/khanhnn3" width="280">
 
