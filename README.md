@@ -10,11 +10,7 @@ Thanks a bunch for fueling my creativity! I really appreciate your kindness and 
 🇻🇳 Chào các bác ạ, thật ra cái này em làm vì cộng đồng là chính, nhưng cũng tốn nhiều token và thời gian, Thật sự trân trọng sự đồng hành và ủng hộ của bạn. Nhờ có bạn mà mình có thêm kinh phí và tinh thần để duy trì đam mê này mỗi ngày. 🇻🇳
 https://ko-fi.com/khanhnn3
 </span></b>
-
-<img src="https://ko-fi.com/khanhnn3" width="280">
-QRCode ủng hộ — app Ngân hàng / MoMo / VietQR / napas247
-<img src="https://lh3.googleusercontent.com/d/1-A89XKR6R5Od80WGOXqSLPU7pPiQ-Bdq](https://lh3.googleusercontent.com/d/1-A89XKR6R5Od80WGOXqSLPU7pPiQ-Bdq" width="280">
-
+<img src="https://lh3.googleusercontent.com/d/1-A89XKR6R5Od80WGOXqSLPU7pPiQ-Bdq" alt="QRCode ủng hộ — app Ngân hàng / MoMo / VietQR / napas247" width="280">
 </div>
 
 ---
