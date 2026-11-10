@@ -4,12 +4,14 @@
 
 ### ☕ Ủng hộ tác giả
 
-<b><span style="color:#16a34a">🇻🇳 Em chào các bác ạ, thật ra cái này em làm vì cộng đồng là chính, nhưng cũng tốn nhiều token và thời gian, nếu được rất mong nhận được chút tấm lòng từ các bác để em có thêm động lực đóng góp và mua thêm token AI ạ. Em xin cúi đầu cảm tạ và chúc các bác nhiều sức khỏe 🇻🇳</span></b>
+<b><span style="color:#16a34a"> 
+Thanks a bunch for fueling my creativity! I really appreciate your kindness and support. Have an amazing day!
 
-<img src="https://raw.githubusercontent.com/home-assistant-tools/vietnam-hunonic/main/assets/donate-qr.png" alt="QR ủng hộ — MoMo / VietQR / napas247" width="280">
-
-*Quét bằng MoMo / VietQR / napas247*
-
+🇻🇳 Chào các bác ạ, thật ra cái này em làm vì cộng đồng là chính, nhưng cũng tốn nhiều token và thời gian, Thật sự trân trọng sự đồng hành và ủng hộ của bạn. Nhờ có bạn mà mình có thêm kinh phí và tinh thần để duy trì đam mê này mỗi ngày. 🇻🇳
+https://ko-fi.com/khanhnn3
+</span></b>
+<img src="https://lh3.googleusercontent.com/d/1-A89XKR6R5Od80WGOXqSLPU7pPiQ-Bdq" width="280">
+*QRCode ủng hộ — app Ngân hàng / MoMo / VietQR / napas247*
 </div>
 
 ---
@@ -45,14 +47,14 @@ Các loại thiết bị được hỗ trợ (**56 root_type**):
 | Nhóm | Số loại | Ví dụ root_type |
 |---|---|---|
 | Công tắc thông minh | 31 | wsdatic3v, wswitch, swminiv2, swshockv2... |
-| Cửa cuốn | 10 | sdoor2 → sdoor12 |
+| Cửa cuốn | 15 | sdoor, sdoor1, sdoorv2, sdoorpro, sdoor2 → sdoor12 |
 | Đèn LED | 6 | swled, dled, duhalled... |
 | Cổng tự động / Gate hub | 5 | gatehun, gate, wsgate... |
 | Quạt thông minh | 4 | fanwifi, fanac, fandc, fanacir (on/off + 3 mức tốc độ) |
 
 > **Công tơ điện (`elmeter`) & công tơ tổng / aptomat wifi (`atmwifi`, `atmwifiv2`):** đóng/cắt (on/off) + sensor **điện năng & tiền điện** tháng này / tháng trước (kWh, VND) + **công suất tức thời** (W). ⚠️ `atmwifi*` là **aptomat tổng — TẮT là mất điện cả nhà**, đừng đưa vào automation vô ý.
 >
-> Chưa hỗ trợ: IR (irwifiv2, irchildv2 — điều hòa/TV), thiết bị RF (hsrf, rfdb...). Sẽ bổ sung sau.
+> Chưa hỗ trợ: IR (irwifiv2, irchildv2 — điều hòa/TV), thiết bị RF (hsrf, rfdb...). Đang dò giao thức trên thiết bị thật — cần danh sách root_type từ tài khoản trước (xem FORK-NOTE.md). 2 quạt trần rfchild đã có trong HA là ứng viên RF đầu tiên để kiểm tra.
 
 ## Tính năng
 
