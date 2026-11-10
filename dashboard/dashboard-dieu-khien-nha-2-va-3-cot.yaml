@@ -1,0 +1,590 @@
+# Dashboard "Điều khiển nhà" — v5, GỒM CẢ 2 TAB: "2 cột" và "3 cột" cho người dùng tự chọn
+# Thẻ Mushroom kiểu app Hunonic + header đồng hồ / lịch dương / lịch âm.
+# Cần có trước: Mushroom (cài từ Chợ), bản vá Hunonic 1.14.2 (cho cửa cuốn),
+# camera Generic Camera tên "Cam_Cua_Cuon", và sensor lịch âm (sensor.lich_am).
+title: Điều khiển nhà
+views:
+  - title: 2 cột
+    path: 2-cot
+    icon: mdi:numeric-2-circle
+    type: sections
+    max_columns: 2
+    sections:
+      # ===== Header: ĐỒNG HỒ (to nhất) + DL hàng trên, AL hàng dưới, đều cỡ =====
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # {{ states('sensor.time') }}
+              {% set d = states('sensor.date').split('-') %}
+              **DL: {% if d | length == 3 %}{{ d[2] }}-{{ d[1] }}-{{ d[0] }}{% else %}{{ states('sensor.date') }}{% endif %}**
+              **AL: {{ states('sensor.lich_am') }}**
+            grid_options:
+              columns: full
+      # ===== Điều khiển chính: camera + cửa cuốn =====
+      - type: grid
+        cards:
+          - type: heading
+            heading: Điều khiển chính
+            icon: mdi:home-lightning-bolt
+          - type: vertical-stack
+            cards:
+              - type: picture-entity
+                entity: camera.nha_moi_cam_cua_cuon
+                camera_view: live
+                show_name: false
+                show_state: false
+                tap_action:
+                  action: more-info
+              - type: horizontal-stack
+                cards:
+                  - type: custom:mushroom-template-card
+                    primary: Mở
+                    icon: mdi:arrow-up-bold
+                    icon_color: "#1f7a43"
+                    layout: vertical
+                    fill_container: true
+                    tap_action:
+                      action: call-service
+                      service: cover.open_cover
+                      service_data:
+                        entity_id: cover.nha_moi_cua_cuon_nha_moi
+                  - type: custom:mushroom-template-card
+                    primary: Dừng
+                    icon: mdi:stop
+                    icon_color: "#5a4632"
+                    layout: vertical
+                    fill_container: true
+                    tap_action:
+                      action: call-service
+                      service: cover.stop_cover
+                      service_data:
+                        entity_id: cover.nha_moi_cua_cuon_nha_moi
+                  - type: custom:mushroom-template-card
+                    primary: Đóng
+                    icon: mdi:arrow-down-bold
+                    icon_color: "#1c2027"
+                    layout: vertical
+                    fill_container: true
+                    tap_action:
+                      action: call-service
+                      service: cover.close_cover
+                      service_data:
+                        entity_id: cover.nha_moi_cua_cuon_nha_moi
+            grid_options:
+              columns: full
+      # ===== Đèn — Nhà mới + Ổ cắm =====
+      - type: grid
+        cards:
+          - type: heading
+            heading: Đèn — Nhà mới
+            icon: mdi:lightbulb-group
+          - type: custom:mushroom-template-card
+            entity: switch.den_3
+            primary: Đèn 3
+            secondary: "{{ 'Đang bật' if is_state('switch.den_3', 'on') else ('Đang tắt' if is_state('switch.den_3', 'off') else 'Mất kết nối') }}"
+            icon: mdi:desk-lamp
+            icon_color: "{{ 'green' if is_state('switch.den_3', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.den_2
+            primary: Đèn 2
+            secondary: "{{ 'Đang bật' if is_state('switch.den_2', 'on') else ('Đang tắt' if is_state('switch.den_2', 'off') else 'Mất kết nối') }}"
+            icon: mdi:ceiling-light
+            icon_color: "{{ 'green' if is_state('switch.den_2', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.den_cua_cuon_quat
+            primary: Đèn Cửa Cuốn + Quạt
+            secondary: "{{ 'Đang bật' if is_state('switch.den_cua_cuon_quat', 'on') else ('Đang tắt' if is_state('switch.den_cua_cuon_quat', 'off') else 'Mất kết nối') }}"
+            icon: mdi:track-light
+            icon_color: "{{ 'green' if is_state('switch.den_cua_cuon_quat', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.den_1
+            primary: Đèn 1
+            secondary: "{{ 'Đang bật' if is_state('switch.den_1', 'on') else ('Đang tắt' if is_state('switch.den_1', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.den_1', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.o_cam_nha_moi
+            primary: Ổ cắm Nhà mới
+            secondary: "{{ 'Đang bật' if is_state('switch.o_cam_nha_moi', 'on') else ('Đang tắt' if is_state('switch.o_cam_nha_moi', 'off') else 'Mất kết nối') }}"
+            icon: mdi:power-socket-eu
+            icon_color: "{{ 'green' if is_state('switch.o_cam_nha_moi', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+          - type: custom:mushroom-template-card
+            primary: Bật tất cả đèn
+            icon: mdi:lightbulb-group
+            icon_color: green
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: call-service
+              service: switch.turn_on
+              target:
+                entity_id:
+                  - switch.den_1
+                  - switch.den_2
+                  - switch.den_3
+                  - switch.den_cua_cuon_quat
+            grid_options:
+              columns: 6
+              rows: auto
+          - type: custom:mushroom-template-card
+            primary: Tắt tất cả đèn
+            icon: mdi:lightbulb-group-off-outline
+            icon_color: grey
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: call-service
+              service: switch.turn_off
+              target:
+                entity_id:
+                  - switch.den_1
+                  - switch.den_2
+                  - switch.den_3
+                  - switch.den_cua_cuon_quat
+            grid_options:
+              columns: 6
+              rows: auto
+      # ===== Nhà K2 =====
+      - type: grid
+        cards:
+          - type: heading
+            heading: Nhà K2
+            icon: mdi:home-outline
+          - type: custom:mushroom-template-card
+            entity: switch.nha_k2_den_1
+            primary: Nhà K2 Đèn 1
+            secondary: "{{ 'Đang bật' if is_state('switch.nha_k2_den_1', 'on') else ('Đang tắt' if is_state('switch.nha_k2_den_1', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.nha_k2_den_1', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.nha_k2_den_2
+            primary: Nhà K2 Đèn 2
+            secondary: "{{ 'Đang bật' if is_state('switch.nha_k2_den_2', 'on') else ('Đang tắt' if is_state('switch.nha_k2_den_2', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.nha_k2_den_2', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.den_2_nha_k2
+            primary: Đèn 2 Nhà K2
+            secondary: "{{ 'Đang bật' if is_state('switch.den_2_nha_k2', 'on') else ('Đang tắt' if is_state('switch.den_2_nha_k2', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.den_2_nha_k2', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+      # ===== Nhà khác =====
+      - type: grid
+        cards:
+          - type: heading
+            heading: Nhà khác
+            icon: mdi:home-group
+          - type: custom:mushroom-template-card
+            entity: switch.den_ong
+            primary: Đèn ống
+            secondary: "{{ 'Đang bật' if is_state('switch.den_ong', 'on') else ('Đang tắt' if is_state('switch.den_ong', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb-fluorescent-tube
+            icon_color: "{{ 'green' if is_state('switch.den_ong', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.den_sofa
+            primary: Đèn sofa
+            secondary: "{{ 'Đang bật' if is_state('switch.den_sofa', 'on') else ('Đang tắt' if is_state('switch.den_sofa', 'off') else 'Mất kết nối') }}"
+            icon: mdi:floor-lamp
+            icon_color: "{{ 'green' if is_state('switch.den_sofa', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.giua_nha
+            primary: Giữa Nhà
+            secondary: "{{ 'Đang bật' if is_state('switch.giua_nha', 'on') else ('Đang tắt' if is_state('switch.giua_nha', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.giua_nha', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.me
+            primary: Mẹ 1
+            secondary: "{{ 'Đang bật' if is_state('switch.me', 'on') else ('Đang tắt' if is_state('switch.me', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.me', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.me_2
+            primary: Mẹ 2
+            secondary: "{{ 'Đang bật' if is_state('switch.me_2', 'on') else ('Đang tắt' if is_state('switch.me_2', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.me_2', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 6
+              rows: auto
+  - title: 3 cột
+    path: 3-cot
+    icon: mdi:numeric-3-circle
+    type: sections
+    max_columns: 2
+    sections:
+      # ===== Header: ĐỒNG HỒ (to nhất) + DL hàng trên, AL hàng dưới, đều cỡ =====
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # {{ states('sensor.time') }}
+              {% set d = states('sensor.date').split('-') %}
+              **DL: {% if d | length == 3 %}{{ d[2] }}-{{ d[1] }}-{{ d[0] }}{% else %}{{ states('sensor.date') }}{% endif %}**
+              **AL: {{ states('sensor.lich_am') }}**
+            grid_options:
+              columns: full
+      # ===== Điều khiển chính: camera + cửa cuốn =====
+      - type: grid
+        cards:
+          - type: heading
+            heading: Điều khiển chính
+            icon: mdi:home-lightning-bolt
+          - type: vertical-stack
+            cards:
+              - type: picture-entity
+                entity: camera.nha_moi_cam_cua_cuon
+                camera_view: live
+                show_name: false
+                show_state: false
+                tap_action:
+                  action: more-info
+              - type: horizontal-stack
+                cards:
+                  - type: custom:mushroom-template-card
+                    primary: Mở
+                    icon: mdi:arrow-up-bold
+                    icon_color: "#1f7a43"
+                    layout: vertical
+                    fill_container: true
+                    tap_action:
+                      action: call-service
+                      service: cover.open_cover
+                      service_data:
+                        entity_id: cover.nha_moi_cua_cuon_nha_moi
+                  - type: custom:mushroom-template-card
+                    primary: Dừng
+                    icon: mdi:stop
+                    icon_color: "#5a4632"
+                    layout: vertical
+                    fill_container: true
+                    tap_action:
+                      action: call-service
+                      service: cover.stop_cover
+                      service_data:
+                        entity_id: cover.nha_moi_cua_cuon_nha_moi
+                  - type: custom:mushroom-template-card
+                    primary: Đóng
+                    icon: mdi:arrow-down-bold
+                    icon_color: "#1c2027"
+                    layout: vertical
+                    fill_container: true
+                    tap_action:
+                      action: call-service
+                      service: cover.close_cover
+                      service_data:
+                        entity_id: cover.nha_moi_cua_cuon_nha_moi
+            grid_options:
+              columns: full
+      # ===== Đèn — Nhà mới + Ổ cắm =====
+      - type: grid
+        cards:
+          - type: heading
+            heading: Đèn — Nhà mới
+            icon: mdi:lightbulb-group
+          - type: custom:mushroom-template-card
+            entity: switch.den_3
+            primary: Đèn 3
+            secondary: "{{ 'Đang bật' if is_state('switch.den_3', 'on') else ('Đang tắt' if is_state('switch.den_3', 'off') else 'Mất kết nối') }}"
+            icon: mdi:desk-lamp
+            icon_color: "{{ 'green' if is_state('switch.den_3', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.den_2
+            primary: Đèn 2
+            secondary: "{{ 'Đang bật' if is_state('switch.den_2', 'on') else ('Đang tắt' if is_state('switch.den_2', 'off') else 'Mất kết nối') }}"
+            icon: mdi:ceiling-light
+            icon_color: "{{ 'green' if is_state('switch.den_2', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.den_cua_cuon_quat
+            primary: Đèn Cửa Cuốn + Quạt
+            secondary: "{{ 'Đang bật' if is_state('switch.den_cua_cuon_quat', 'on') else ('Đang tắt' if is_state('switch.den_cua_cuon_quat', 'off') else 'Mất kết nối') }}"
+            icon: mdi:track-light
+            icon_color: "{{ 'green' if is_state('switch.den_cua_cuon_quat', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.den_1
+            primary: Đèn 1
+            secondary: "{{ 'Đang bật' if is_state('switch.den_1', 'on') else ('Đang tắt' if is_state('switch.den_1', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.den_1', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.o_cam_nha_moi
+            primary: Ổ cắm Nhà mới
+            secondary: "{{ 'Đang bật' if is_state('switch.o_cam_nha_moi', 'on') else ('Đang tắt' if is_state('switch.o_cam_nha_moi', 'off') else 'Mất kết nối') }}"
+            icon: mdi:power-socket-eu
+            icon_color: "{{ 'green' if is_state('switch.o_cam_nha_moi', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto
+          - type: custom:mushroom-template-card
+            primary: Bật tất cả đèn
+            icon: mdi:lightbulb-group
+            icon_color: green
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: call-service
+              service: switch.turn_on
+              target:
+                entity_id:
+                  - switch.den_1
+                  - switch.den_2
+                  - switch.den_3
+                  - switch.den_cua_cuon_quat
+            grid_options:
+              columns: 4
+              rows: auto
+          - type: custom:mushroom-template-card
+            primary: Tắt tất cả đèn
+            icon: mdi:lightbulb-group-off-outline
+            icon_color: grey
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: call-service
+              service: switch.turn_off
+              target:
+                entity_id:
+                  - switch.den_1
+                  - switch.den_2
+                  - switch.den_3
+                  - switch.den_cua_cuon_quat
+            grid_options:
+              columns: 4
+              rows: auto
+      # ===== Nhà K2 =====
+      - type: grid
+        cards:
+          - type: heading
+            heading: Nhà K2
+            icon: mdi:home-outline
+          - type: custom:mushroom-template-card
+            entity: switch.nha_k2_den_1
+            primary: Nhà K2 Đèn 1
+            secondary: "{{ 'Đang bật' if is_state('switch.nha_k2_den_1', 'on') else ('Đang tắt' if is_state('switch.nha_k2_den_1', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.nha_k2_den_1', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.nha_k2_den_2
+            primary: Nhà K2 Đèn 2
+            secondary: "{{ 'Đang bật' if is_state('switch.nha_k2_den_2', 'on') else ('Đang tắt' if is_state('switch.nha_k2_den_2', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.nha_k2_den_2', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.den_2_nha_k2
+            primary: Đèn 2 Nhà K2
+            secondary: "{{ 'Đang bật' if is_state('switch.den_2_nha_k2', 'on') else ('Đang tắt' if is_state('switch.den_2_nha_k2', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.den_2_nha_k2', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto
+      # ===== Nhà khác =====
+      - type: grid
+        cards:
+          - type: heading
+            heading: Nhà khác
+            icon: mdi:home-group
+          - type: custom:mushroom-template-card
+            entity: switch.den_ong
+            primary: Đèn ống
+            secondary: "{{ 'Đang bật' if is_state('switch.den_ong', 'on') else ('Đang tắt' if is_state('switch.den_ong', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb-fluorescent-tube
+            icon_color: "{{ 'green' if is_state('switch.den_ong', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.den_sofa
+            primary: Đèn sofa
+            secondary: "{{ 'Đang bật' if is_state('switch.den_sofa', 'on') else ('Đang tắt' if is_state('switch.den_sofa', 'off') else 'Mất kết nối') }}"
+            icon: mdi:floor-lamp
+            icon_color: "{{ 'green' if is_state('switch.den_sofa', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.giua_nha
+            primary: Giữa Nhà
+            secondary: "{{ 'Đang bật' if is_state('switch.giua_nha', 'on') else ('Đang tắt' if is_state('switch.giua_nha', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.giua_nha', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.me
+            primary: Mẹ 1
+            secondary: "{{ 'Đang bật' if is_state('switch.me', 'on') else ('Đang tắt' if is_state('switch.me', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.me', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto
+          - type: custom:mushroom-template-card
+            entity: switch.me_2
+            primary: Mẹ 2
+            secondary: "{{ 'Đang bật' if is_state('switch.me_2', 'on') else ('Đang tắt' if is_state('switch.me_2', 'off') else 'Mất kết nối') }}"
+            icon: mdi:lightbulb
+            icon_color: "{{ 'green' if is_state('switch.me_2', 'on') else 'grey' }}"
+            layout: vertical
+            fill_container: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: 4
+              rows: auto

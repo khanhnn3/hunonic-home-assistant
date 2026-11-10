@@ -28,6 +28,12 @@
 >
 > **Khuyến nghị:** tạo một **tài khoản Hunonic riêng** dành cho Home Assistant, rồi từ tài khoản chính **share cả nhà** sang tài khoản đó. Như vậy điện thoại vẫn dùng tài khoản chính bình thường, còn Home Assistant dùng tài khoản phụ — không bị đá nhau.
 
+## 🍴 Bản fork này (v1.14.2) — có gì khác repo gốc?
+
+- **Sửa lỗi cửa cuốn Smart Door đời đầu** (`sdoor`, `sdoor1`, `sdoorv2`, `sdoorpro` — firmware 211205): bản gốc 1.14.1 không tạo entity cover cho các model này, chỉ có sensor chẩn đoán (chi tiết trong `FORK-NOTE.md`). Bản 1.14.2 bổ sung đầy đủ: mở / đóng / dừng / đặt vị trí như app Hunonic.
+- **Kèm gói giao diện điều khiển** trong thư mục `dashboard/`: dashboard Hass kiểu ô lớn dễ bấm (thẻ Mushroom), 2 bố cục **2 cột / 3 cột** cho người dùng tự chọn, camera gộp chung một khối với cửa cuốn, header đồng hồ + **lịch âm / dương lịch**.
+- ⚠️ Trước khi dùng gói dashboard, **đọc kỹ mục "Đặt tên thiết bị & mã entity"** trong `dashboard/huong-dan-dashboard-v5.md` — làm đúng mục đó là cài phát ăn ngay.
+
 ## Giới thiệu
 
 [Hunonic](https://hunoicpro.com) là thương hiệu nhà thông minh Việt Nam, cung cấp các thiết bị điều khiển thông minh cho hộ gia đình và doanh nghiệp.
