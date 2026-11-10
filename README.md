@@ -47,14 +47,14 @@ Các loại thiết bị được hỗ trợ (**56 root_type**):
 | Nhóm | Số loại | Ví dụ root_type |
 |---|---|---|
 | Công tắc thông minh | 31 | wsdatic3v, wswitch, swminiv2, swshockv2... |
-| Cửa cuốn | 10 | sdoor2 → sdoor12 |
+| Cửa cuốn | 15 | sdoor, sdoor1, sdoorv2, sdoorpro, sdoor2 → sdoor12 |
 | Đèn LED | 6 | swled, dled, duhalled... |
 | Cổng tự động / Gate hub | 5 | gatehun, gate, wsgate... |
 | Quạt thông minh | 4 | fanwifi, fanac, fandc, fanacir (on/off + 3 mức tốc độ) |
 
 > **Công tơ điện (`elmeter`) & công tơ tổng / aptomat wifi (`atmwifi`, `atmwifiv2`):** đóng/cắt (on/off) + sensor **điện năng & tiền điện** tháng này / tháng trước (kWh, VND) + **công suất tức thời** (W). ⚠️ `atmwifi*` là **aptomat tổng — TẮT là mất điện cả nhà**, đừng đưa vào automation vô ý.
 >
-> Chưa hỗ trợ: IR (irwifiv2, irchildv2 — điều hòa/TV), thiết bị RF (hsrf, rfdb...). Sẽ bổ sung sau.
+> Chưa hỗ trợ: IR (irwifiv2, irchildv2 — điều hòa/TV), thiết bị RF (hsrf, rfdb...). Đang dò giao thức trên thiết bị thật — cần danh sách root_type từ tài khoản trước (xem FORK-NOTE.md). 2 quạt trần rfchild đã có trong HA là ứng viên RF đầu tiên để kiểm tra.
 
 ## Tính năng
 
