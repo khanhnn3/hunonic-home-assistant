@@ -4,9 +4,10 @@
 
 ### ☕ Ủng hộ tác giả
 
-<b><span style="color:#16a34a">🇻🇳 Em chào các bác ạ, thật ra cái này em làm vì cộng đồng là chính, nhưng cũng tốn nhiều token và thời gian, nếu được rất mong nhận được chút tấm lòng từ các bác để em có thêm động lực đóng góp và mua thêm token AI ạ. Em xin cúi đầu cảm tạ và chúc các bác nhiều sức khỏe 🇻🇳</span></b>
+<b><span style="color:#16a34a"> Thanks a bunch for fueling my creativity! I really appreciate your kindness and support. Have an amazing day!
+🇻🇳 Chào các bác ạ, thật ra cái này em làm vì cộng đồng là chính, nhưng cũng tốn nhiều token và thời gian, Thật sự trân trọng sự đồng hành và ủng hộ của bạn. Nhờ có bạn mà mình có thêm kinh phí và tinh thần để duy trì đam mê này mỗi ngày. 🇻🇳</span></b>
 
-<img src="https://raw.githubusercontent.com/home-assistant-tools/vietnam-hunonic/main/assets/donate-qr.png" alt="QR ủng hộ — MoMo / VietQR / napas247" width="280">
+<img src="https://ko-fi.com/khanhnn3" width="280">
 
 *Quét bằng MoMo / VietQR / napas247*
 
