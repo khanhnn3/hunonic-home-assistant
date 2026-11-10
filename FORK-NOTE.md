@@ -60,3 +60,55 @@ của state — cùng cơ chế các bản sdoor2–sdoor12 đang dùng.
 - Chỉ số **"Ô thoáng %"** mà app Hunonic hiển thị: không tìm thấy trường
   tương ứng trong code/docs của repo (chỉ có `pcn` = % độ mở) → **không thêm**,
   tránh bịa protocol.
+
+---
+
+## Bổ sung v1.14.3 — nút Khóa / Mở khóa cho cửa cuốn
+
+### Vấn đề
+
+Bản gốc (và bản fork 1.14.2) điều khiển cửa cuốn họ `sdoor` được
+mở / đóng / dừng / đặt vị trí, nhưng **không có cách bấm KHÓA / MỞ KHÓA**
+trong Home Assistant — người dùng phải mở app Hunonic để khóa điều khiển
+cửa. Donald yêu cầu bổ sung nút khóa khi dùng dashboard điều khiển cửa
+cuốn ("điều khiển cửa cuốn thiết nút khoá" — 2026-11-11).
+
+### Cơ sở giao thức (không bịa)
+
+`docs/api.md` của repo tài liệu hóa đầy đủ lệnh cửa cuốn
+`{"sdr": <action>, "u": <userId>, "src": 1}` với **4 = khóa, 5 = mở khóa**;
+`custom_components/hunonic/cover.py` cũng đã khai báo sẵn hằng
+`DOOR_LOCK = 4` / `DOOR_UNLOCK = 5` nhưng không dùng ở đâu — class
+`HunonicDoor` không có method khóa, và Home Assistant không có service
+cover nào tương ứng khóa. Cách đúng chuẩn HA: tạo **button entity**.
+
+### Thay đổi (so với v1.14.2)
+
+1. `custom_components/hunonic/button.py` — **file mới**: platform `button`.
+   Mỗi thiết bị thuộc `DOOR_TYPES` có thêm 2 entity:
+   - `<tên cửa> - Khóa` — `unique_id = hunonic_button_<device_id>_lock`,
+     icon `mdi:lock`, bấm gửi `{"sdr": 4, "u": <userId>, "src": 1}`.
+   - `<tên cửa> - Mở khóa` — `unique_id = hunonic_button_<device_id>_unlock`,
+     icon `mdi:lock-open-variant`, bấm gửi `{"sdr": 5, "u": <userId>, "src": 1}`.
+   Hai nút dùng chung `device_info` (identifiers theo `root_id`) với cover
+   nên nằm cùng một thiết bị trong HA; `available` theo trạng thái online
+   của coordinator như các platform khác.
+2. `custom_components/hunonic/const.py` — `PLATFORMS`: thêm `"button"`
+   (ngay sau `"cover"`).
+3. `custom_components/hunonic/manifest.json` — version `1.14.2` → `1.14.3`.
+
+### Đã kiểm chứng
+
+- `python3 -m py_compile` toàn bộ file .py: OK.
+- Test độc lập (`test_button_lock.py`, stub tối thiểu Home Assistant, nạp
+  code thật của const.py/button.py): thiết bị `sdoor1` tạo đúng 2 nút,
+  thiết bị công tắc `wsdatic3v` tạo 0 nút; bấm Khóa gửi đúng
+  `{"sdr": 4, "u": uid, "src": 1}`, bấm Mở khóa gửi `sdr: 5`; tên /
+  unique_id / icon đúng đặc tả. PASS.
+
+### Chưa kiểm chứng / lưu ý
+
+- Chưa chạy trên thiết bị vật lý: bộ điều khiển sdoor đời đầu (fw 211205)
+  có thực thi lệnh khóa `sdr: 4/5` hay không cần xác nhận trên cửa thật —
+  giao thức có tài liệu và app Hunonic có nút khóa, nhưng entity button là
+  đường gửi mới từ HA.

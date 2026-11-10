@@ -109,7 +109,7 @@ python3 -c "import json;d=json.load(open('/opt/homeassistant/.storage/core.entit
 
 Mở file dashboard bằng Notepad, bấm **Ctrl+H** thay từng mã mẫu dưới đây bằng mã thật của nhà bạn, rồi mới dán ở Bước 6:
 
-`camera.nha_moi_cam_cua_cuon` · `cover.nha_moi_cua_cuon_nha_moi` · `switch.den_1` · `switch.den_2` · `switch.den_3` · `switch.den_cua_cuon_quat` · `switch.o_cam_nha_moi` · `switch.nha_k2_den_1` · `switch.nha_k2_den_2` · `switch.den_2_nha_k2` · `switch.den_ong` · `switch.den_sofa` · `switch.giua_nha` · `switch.me` · `switch.me_2`
+`camera.nha_moi_cam_cua_cuon` · `cover.nha_moi_cua_cuon_nha_moi` · `button.nha_moi_cua_cuon_nha_moi_khoa` · `button.nha_moi_cua_cuon_nha_moi_mo_khoa` · `switch.den_1` · `switch.den_2` · `switch.den_3` · `switch.den_cua_cuon_quat` · `switch.o_cam_nha_moi` · `switch.nha_k2_den_1` · `switch.nha_k2_den_2` · `switch.den_2_nha_k2` · `switch.den_ong` · `switch.den_sofa` · `switch.giua_nha` · `switch.me` · `switch.me_2`
 
 Thiết bị nào nhà bạn không có thì sau khi dán, xóa thẻ tương ứng trong chế độ Sửa dashboard (dấu ⋮ trên thẻ → Xóa).
 
@@ -150,7 +150,7 @@ Mọi thiết bị trên dashboard là **từng thẻ riêng lẻ**, nên chỉn
 - **Quy trình chuẩn khi lắp cho khách:**
   1. Ưu tiên **đặt tên thiết bị theo mẫu ngay khi khai báo** trong app Hunonic cho khách (Đèn 1, Đèn 2, Đèn 3, Ổ cắm, Cửa cuốn...) và đặt tên camera là **Cam_Cua_Cuon** → phần lớn mã khớp sẵn.
   2. Mở **Cài đặt → Thiết bị & dịch vụ → tab Thực thể** của nhà khách, ghi lại mã thật của từng thiết bị.
-  3. Mở file dashboard bằng Notepad, dùng **Tìm & thay thế (Ctrl+H)** thay mã mẫu bằng mã thật. Các mã mẫu cần thay: `switch.den_1`, `switch.den_2`, `switch.den_3`, `switch.den_cua_cuon_quat`, `switch.o_cam_nha_moi`, `switch.nha_k2_den_1`, `switch.nha_k2_den_2`, `switch.den_2_nha_k2`, `switch.den_ong`, `switch.den_sofa`, `switch.giua_nha`, `switch.me`, `switch.me_2`, `cover.nha_moi_cua_cuon_nha_moi` (mã cover sinh theo **tên nhà** của khách), `camera.nha_moi_cam_cua_cuon` (khớp sẵn nếu đặt tên camera là Cam_Cua_Cuon).
+  3. Mở file dashboard bằng Notepad, dùng **Tìm & thay thế (Ctrl+H)** thay mã mẫu bằng mã thật. Các mã mẫu cần thay: `switch.den_1`, `switch.den_2`, `switch.den_3`, `switch.den_cua_cuon_quat`, `switch.o_cam_nha_moi`, `switch.nha_k2_den_1`, `switch.nha_k2_den_2`, `switch.den_2_nha_k2`, `switch.den_ong`, `switch.den_sofa`, `switch.giua_nha`, `switch.me`, `switch.me_2`, `cover.nha_moi_cua_cuon_nha_moi` (mã cover sinh theo **tên nhà** của khách), `button.nha_moi_cua_cuon_nha_moi_khoa`, `button.nha_moi_cua_cuon_nha_moi_mo_khoa` (2 nút khóa của cửa cuốn, cần bản Hunonic 1.14.3), `camera.nha_moi_cam_cua_cuon` (khớp sẵn nếu đặt tên camera là Cam_Cua_Cuon).
   4. Dán file đã sửa như Bước 6. Thẻ nào nhà khách không có thiết bị tương ứng thì xóa thẻ đó trong chế độ Sửa dashboard.
 
 **Đổi tên hiển thị trên thẻ:** Sửa dashboard → chọn thẻ → sửa ô **Primary** (với thẻ công tắc) hoặc **Tên** (với thẻ cổng/cửa cuốn). Đổi icon cũng ở màn hình này (ô **Icon**, gõ dạng `mdi:lightbulb`).

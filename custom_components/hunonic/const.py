@@ -36,7 +36,7 @@ CONF_TOKEN_ID = "token_id"
 CONF_USER_ID = "user_id"
 CONF_HOME_IDS = "home_ids"  # danh sách nhà được chọn (rỗng/không có = tất cả)
 
-PLATFORMS = ["switch", "cover", "fan", "light", "sensor", "select"]
+PLATFORMS = ["switch", "cover", "button", "fan", "light", "sensor", "select"]
 
 SCAN_INTERVAL = 30  # giây
 MQTT_RECONNECT_DELAY = 5
